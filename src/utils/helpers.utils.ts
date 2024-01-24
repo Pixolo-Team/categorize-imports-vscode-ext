@@ -1,5 +1,5 @@
+// CONSTANTS //
 import { importCategoryToComment } from "../infrastructure/constants";
-import { displayCategorizedImports } from "./modifiers.utils";
 
 /** Read the import and return Category Name */
 export const determineCategory = (importStatement: string): string => {
@@ -17,7 +17,9 @@ export const determineCategory = (importStatement: string): string => {
 };
 
 /** Categorizes imports and pushes them in their respective category array */
-export const categorizeImports = (imports: string[], startOffset: any) => {
+export const categorizeImports = (
+	imports: string[]
+): { [category: string]: string[] } => {
 	// Create an object to store imports categorized by their categories
 	const categorizedImports: { [category: string]: string[] } = {};
 
@@ -35,6 +37,15 @@ export const categorizeImports = (imports: string[], startOffset: any) => {
 		// Push the import into the category array
 		categorizedImports[category].push(singleImport);
 	}
-	// Display categorized imports
-	displayCategorizedImports(categorizedImports, startOffset);
+	return categorizedImports;
+};
+
+/** Get all import statements from the given text */
+export const getImports = (documentText: string): string[] => {
+	// Regular expression to find all imports
+	const importRegex = /import[\s\S]*?['"].*?['"]/g;
+
+	// Checks if the file has imports
+	const imports = documentText?.match(importRegex) || [];
+	return imports;
 };

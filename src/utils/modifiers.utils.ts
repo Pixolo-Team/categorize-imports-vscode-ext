@@ -1,18 +1,47 @@
 import * as vscode from "vscode";
-import { categorizeImports } from "./helpers.utils";
+
+// UTILS //
+import { categorizeImports, getImports } from "./helpers.utils";
+
+// CONSTANTS //
 import { importCategories } from "../infrastructure/constants";
 
-export const segregateImports = async (imports: string[]): Promise<void> => {
-	deleteCategoryComments().then((result) => {
-		if (result.success) {
-			// Delete the imports after deleting the comments
-			deleteImportLines(imports).then((result) => {
-				if (result.success) {
-					categorizeImports(imports, result.startOffset);
-				}
-			});
+/** This function deletes previous comments and empty lines and adds segregated imports */
+export const segregateImports = async (): Promise<void> => {
+	// Get the current document
+	const document = vscode.window.activeTextEditor?.document;
+	// Get the text of the current document
+	const documentText = document?.getText();
+
+	// Get all imports
+	const imports = getImports(documentText ?? "");
+
+	// This removes the lines with comments of the format // CATEGORY //
+	const deleteCommentsResult = await deleteCategoryComments();
+
+	// If the comments are deleted, delete the import lines
+	if (deleteCommentsResult.success) {
+		const deleteImportsResult = await deleteImportLines(imports);
+
+		// If the import lines are deleted, display the categorized imports
+		if (deleteImportsResult.success) {
+			// Categorize the imports
+			const categorizedImports = categorizeImports(imports);
+			// Display categorized imports
+			const displayCategorizedImportsResult = await displayCategorizedImports(
+				categorizedImports,
+				deleteImportsResult.startOffset ?? 0
+			);
+
+			// If the categorized imports are displayed, remove empty lines after the last import
+			if (displayCategorizedImportsResult.status) {
+				// Remove empty lines after the last import
+				removeEmptyLinesAfterPosition(
+					displayCategorizedImportsResult.lastImportText ?? ""
+				);
+			}
 		}
-	});
+	}
 };
 
 /** To delete the import lines */
@@ -136,68 +165,66 @@ export const displayCategorizedImports = (
 		[category: string]: string[];
 	},
 	startOffset: number
-) => {
-	// Retrieve the active text editor
-	const activeEditor = vscode.window.activeTextEditor;
-	let lastImportText = "";
+): Promise<{ status: boolean; lastImportText?: string }> => {
+	return new Promise((resolve) => {
+		// Retrieve the active text editor
+		const activeEditor = vscode.window.activeTextEditor;
+		let lastImportText = "";
 
-	// Check if there is an active text editor
-	if (activeEditor) {
-		// Use the edit method to modify the document
-		activeEditor
-			.edit((text) => {
-				// Start position to insert categorized imports
-				const insertPosition = activeEditor.document.positionAt(startOffset);
+		// Check if there is an active text editor
+		if (activeEditor) {
+			// Use the edit method to modify the document
+			activeEditor
+				.edit((text) => {
+					// Start position to insert categorized imports
+					const insertPosition = activeEditor.document.positionAt(startOffset);
 
-				// Iterate through categories and imports
-				for (const category of importCategories) {
-					if (!categorizedImports[category]) {
-						continue;
+					// Iterate through categories and imports
+					for (const category of importCategories) {
+						if (!categorizedImports[category]) {
+							continue;
+						}
+						const categoryImports = categorizedImports[category];
+
+						// Insert a header for the category
+						text.insert(insertPosition, `// ${category} //\n`);
+
+						// Insert each import line
+						for (const importLine of categoryImports) {
+							text.insert(insertPosition, `${importLine};\n`);
+							lastImportText = importLine;
+						}
+						// Insert a separator between categories
+						text.insert(insertPosition, "\n");
 					}
-					const categoryImports = categorizedImports[category];
-
-					// Insert a header for the category
-					text.insert(insertPosition, `// ${category} //\n`);
-
-					// Insert each import line
-					for (const importLine of categoryImports) {
-						text.insert(insertPosition, `${importLine};\n`);
-						lastImportText = importLine;
-					}
-					// Insert a separator between categories
-					text.insert(insertPosition, "\n");
-				}
-				// }
-			})
-			.then(() => {
-				// Find the offset of the last import
-				const currentOffset = activeEditor.document
-					.getText()
-					.indexOf(lastImportText);
-
-				// Checks if the last import was found or not
-				if (currentOffset !== -1) {
-					// Find end offset of last import
-					const endOffset = currentOffset + lastImportText.length;
-					const endPosition = activeEditor.document.positionAt(endOffset);
-					console.log(endPosition);
-
-					// Call the function to remove empty lines after the end position
-					removeEmptyLinesAfterPosition(endPosition);
-				}
-			});
-	}
+					// }
+				})
+				.then(() => {
+					resolve({ status: true, lastImportText });
+				});
+		} else {
+			resolve({ status: false });
+		}
+	});
 };
 
 /** Remove empty lines after correct imports end */
-export const removeEmptyLinesAfterPosition = (
-	importsLastPosition: vscode.Position
-): void => {
+export const removeEmptyLinesAfterPosition = (lastImportText: string): void => {
 	// Access the active text editor
 	const activeEditor = vscode.window.activeTextEditor;
 
 	// Check if there is an active text editor
 	if (activeEditor) {
+		let importsLastPosition = new vscode.Position(0, 0);
+		const currentOffset = activeEditor.document.getText().indexOf(lastImportText);
+
+		// Checks if the last import was found or not
+		if (currentOffset !== -1) {
+			// Find end offset of last import
+			const endOffset = currentOffset + lastImportText.length;
+			importsLastPosition = activeEditor.document.positionAt(endOffset);
+		}
+
 		// Use the edit method to modify the document
 		activeEditor.edit((textEditor) => {
 			// Iterate through lines starting from the line after the provided position leaving one empty line
