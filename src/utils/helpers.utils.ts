@@ -1,16 +1,12 @@
 // CONSTANTS //
-import { importCategoryToComment } from "../infrastructure/constants";
+import { importCategoryMap } from "../infrastructure/constants";
 
 /** Read the import and return Category Name */
 export const determineCategory = (importStatement: string): string => {
-	// Check if import ends with "Request"
-	if (importStatement.endsWith("Request")) {
-		return "API SERVICES";
-	}
-
-	for (const category in importCategoryToComment) {
+	// Iterate through each defined category in the import statement and check if it matches any category
+	for (const category in importCategoryMap) {
 		if (importStatement.includes(category)) {
-			return importCategoryToComment[category];
+			return importCategoryMap[category];
 		}
 	}
 	return "OTHERS";
@@ -24,9 +20,9 @@ export const categorizeImports = (
 	const categorizedImports: { [category: string]: string[] } = {};
 
 	// Loop in all imports
-	for (const singleImport of imports) {
+	for (const importItem of imports) {
 		// Find category of the import
-		const category = determineCategory(singleImport);
+		const category = determineCategory(importItem);
 
 		// Check if the category exists in the categorized imports object
 		if (!categorizedImports[category]) {
@@ -35,7 +31,7 @@ export const categorizeImports = (
 		}
 
 		// Push the import into the category array
-		categorizedImports[category].push(singleImport);
+		categorizedImports[category].push(importItem);
 	}
 	return categorizedImports;
 };

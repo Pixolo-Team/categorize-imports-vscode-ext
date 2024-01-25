@@ -4,7 +4,10 @@ import * as vscode from "vscode";
 import { categorizeImports, getImports } from "./helpers.utils";
 
 // CONSTANTS //
-import { importCategories } from "../infrastructure/constants";
+import {
+	importCategories,
+	importCategoriesWithVariations,
+} from "../infrastructure/constants";
 
 /** This function deletes previous comments and empty lines and adds segregated imports */
 export const segregateImports = async (): Promise<void> => {
@@ -126,15 +129,15 @@ export const deleteCategoryComments = (): Promise<{ success: boolean }> => {
 					) {
 						const lineObject = activeEditor.document.lineAt(lineNumber);
 						// Regular expression for comments
-						const commentMatch = lineObject.text.match(/\/\/.*?\/\/.*?/);
+						const commentMatch = RegExp(/\/\/.*?\/\/.*?/).exec(lineObject.text);
 
 						// Check if the line contains a comment
 						if (commentMatch) {
 							// Iterate through each import type
-							for (const importType of importCategories) {
+							for (const importType of importCategoriesWithVariations) {
 								// Check if the comment string is in the imports array
 
-								if (lineObject.text.includes(importType)) {
+								if (lineObject.text.includes(importType.toUpperCase())) {
 									// Delete the line if the comment string is in the imports array
 									const lineRange = lineObject.rangeIncludingLineBreak;
 
