@@ -2,7 +2,7 @@
   "name": "importo",
   "displayName": "Importo",
   "description": "Streamline your code with Pixolo's Import Organizer - Importo - the VS Code extension that automatically categorizes and neatly arranges your imports. Say goodbye to cluttered import sections; with designated comments like // SERVICES // and // UTILS //, your imports will be organized, clean, and easy to navigate. Enhance your coding efficiency and clarity today!",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "Pixolo",
   "author": "Pixolo",
   "repository": {
