@@ -39,7 +39,7 @@ export const categorizeImports = (
 /** Get all import statements from the given text */
 export const getImports = (documentText: string): string[] => {
 	// Regular expression to find all imports
-	const importRegex = /import[\s\S]*?['"].*?['"]/g;
+	const importRegex = /import [\s\S]*?['"].*?['"]/g;
 
 	// Checks if the file has imports
 	const imports = documentText?.match(importRegex) || [];
