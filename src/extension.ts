@@ -9,11 +9,14 @@ export function activate(context: vscode.ExtensionContext) {
 	// Register the command to segregate imports
 	let disposable = vscode.commands.registerCommand(
 		"importo.segregate-imports",
+        async () => {
+            // Perform import segregation
+            await segregateImports();
 
-		() => {
-			segregateImports();
-		}
-	);
+            // Save the active document
+            await vscode.commands.executeCommand("workbench.action.files.save");
+        }
+	);	
 	context.subscriptions.push(disposable);
 }
 // This method is called when your extension is deactivated
