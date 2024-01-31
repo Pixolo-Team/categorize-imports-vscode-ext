@@ -1,15 +1,26 @@
 {
   "name": "importo",
   "displayName": "Importo",
-  "description": "",
+  "description": "Streamline your code with Pixolo's Import Organizer - Importo - the VS Code extension that automatically categorizes and neatly arranges your imports. Say goodbye to cluttered import sections; with designated comments like // SERVICES // and // UTILS //, your imports will be organized, clean, and easy to navigate. Enhance your coding efficiency and clarity today!",
   "version": "0.0.1",
+  "publisher": "Pixolo",
+  "author": "Pixolo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext/issues"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Formatters"
   ],
-  "activationEvents": [],
+  "activationEvents": ["onStartupFinished"],
+  "icon": "icon.jpg",
   "main": "./out/extension.js",
   "contributes": {
     "commands": [

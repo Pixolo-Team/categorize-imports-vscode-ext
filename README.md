@@ -1,71 +1,30 @@
-# import-organizer README
+# Importo - Pixolo's Import Organizer for VS Code
 
-This is the README for your extension "import-organizer". After writing up a brief description, we recommend including the following sections.
+## Overview
+
+Importo is a VS Code extension designed to simplify and declutter your coding workspace. It automatically sorts and categorizes your import statements under clearly marked comments, making your code more organized and readable.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Auto-Categorization:** Effortlessly organizes imports into categories like services, utils, etc.
+- **Custom Comments:** Predefined comments like `// SERVICES //` and `// UTILS //` for easy differentiation.
+- **Clean & Neat:** Keeps the import section of your code clean and systematically arranged.
+- **Sorted by importance:** The imports that are segregated are ordered based on their importance to the code.
 
-For example if there is an image subfolder under your extension project workspace:
+## How to Use
 
-\!\[feature X\]\(images/feature-x.png\)
+1. **Install the Extension:** Download and install Importo from the VS Code Marketplace.
+2. **Command Execution:** Simply run the command `importo` in your VS Code command palette.
+3. **Enjoy Organized Imports:** Watch as your imports are automatically categorized and structured.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Feedback and Support
 
-## Requirements
+Your feedback is important to us! For support or to share your thoughts on how we can improve, please contact team.pixolo@gmail.com.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## License
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+This extension is licensed under MIT License.
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Make your coding experience smoother and more efficient with Importo – where organization meets innovation!
