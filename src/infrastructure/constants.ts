@@ -10,6 +10,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	".css": "STYLES",
 	".scss": "STYLES",
 	"types/": "TYPES",
+	".d": "TYPES",
 	"enums/": "ENUMS",
 	"assets/icons": "SVG's",
 	"navigation/": "NAVIGATION",
