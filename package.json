@@ -1,59 +1,61 @@
 {
-  "name": "importo",
-  "displayName": "Importo",
-  "description": "Streamline your code with Pixolo's Import Organizer - Importo - the VS Code extension that automatically categorizes and neatly arranges your imports. Say goodbye to cluttered import sections; with designated comments like // SERVICES // and // UTILS //, your imports will be organized, clean, and easy to navigate. Enhance your coding efficiency and clarity today!",
-  "version": "0.0.5",
-  "publisher": "Pixolo",
-  "author": "Pixolo",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext/issues"
-  },
-  "engines": {
-    "vscode": "^1.85.0"
-  },
-  "categories": [
-    "Formatters"
-  ],
-  "activationEvents": ["onStartupFinished"],
-  "icon": "icon.jpg",
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "importo.segregate-imports",
-        "title": "Segregate Imports"
-      }
-    ],
-    "keybindings": [
-      {
-        "when": "editorTextFocus && !editorReadonly",
-        "command": "importo.segregate-imports",
-        "key": "ctrl+s"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.85.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
-    "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
-  }
+	"name": "importo",
+	"displayName": "Importo",
+	"description": "Streamline your code with Pixolo's Import Organizer - Importo - the VS Code extension that automatically categorizes and neatly arranges your imports. Say goodbye to cluttered import sections; with designated comments like // SERVICES // and // UTILS //, your imports will be organized, clean, and easy to navigate. Enhance your coding efficiency and clarity today!",
+	"version": "0.0.6",
+	"publisher": "Pixolo",
+	"author": "Pixolo",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Pixolo-Team/categorize-imports-vscode-ext/issues"
+	},
+	"engines": {
+		"vscode": "^1.85.0"
+	},
+	"categories": [
+		"Formatters"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"icon": "icon.jpg",
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "importo.segregate-imports",
+				"title": "Segregate Imports"
+			}
+		],
+		"keybindings": [
+			{
+				"when": "editorTextFocus && !editorReadonly",
+				"command": "importo.segregate-imports",
+				"key": "alt+s"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "vscode-test"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.85.0",
+		"@types/mocha": "^10.0.6",
+		"@types/node": "18.x",
+		"@typescript-eslint/eslint-plugin": "^6.15.0",
+		"@typescript-eslint/parser": "^6.15.0",
+		"eslint": "^8.56.0",
+		"typescript": "^5.3.3",
+		"@vscode/test-cli": "^0.0.4",
+		"@vscode/test-electron": "^2.3.8"
+	}
 }

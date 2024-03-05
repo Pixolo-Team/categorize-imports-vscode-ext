@@ -19,6 +19,8 @@ export const importCategoryMap: { [key: string]: string } = {
 	sql: "MODULES",
 	axios: "MODULES",
 	"utils/": "UTILS",
+	"environmets/": "UTILS",
+	environment: "UTILS",
 	"components/common-styles/": "STYLES",
 	"styles/": "STYLES",
 	".styles": "STYLES",
@@ -59,6 +61,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	".controller": "CONTROLLERS",
 	"/routes": "ROUTES",
 	".route": "ROUTES",
+	"-routing": "ROUTINGS",
 	"/dummy-data": "DUMMY DATA",
 	"/data": "DATA",
 	gorhom: "PLUGINS",
@@ -100,6 +103,7 @@ export const importCategories = [
 	"DATA",
 	"PAGES",
 	"SCREENS",
+	"ROUTINGS",
 ];
 
 export const importCategoriesWithVariations = [
@@ -186,4 +190,8 @@ export const importCategoriesWithVariations = [
 	"SCREE",
 	"SCREEN",
 	"SCREN",
+	"ROUTEING",
+	"ROUTIN",
+	"ROUTINGS",
+	"ROUTING",
 ];
