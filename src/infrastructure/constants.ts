@@ -25,6 +25,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	"styles/": "STYLES",
 	".styles": "STYLES",
 	"theme/": "STYLES",
+	Theme: "STYLES",
 	"components/": "COMPONENTS",
 	Component: "COMPONENTS",
 	"contexts/": "CONTEXTS",
@@ -35,6 +36,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	"enums/": "ENUMS",
 	"assets/icons": "SVG's",
 	"navigation/": "NAVIGATION",
+	"/services/db": "DB",
 	".ds": "DATA SERVICES",
 	"/data-service": "DATA SERVICES",
 	"/services/data": "DATA SERVICES",
@@ -74,7 +76,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	"/sections": "SECTIONS",
 	".page": "PAGES",
 	"screen/": "SCREENS",
-	LoginScreen: "SCREENS",
+	Screen: "SCREENS",
 };
 
 export const importCategories = [
@@ -93,6 +95,7 @@ export const importCategories = [
 	"DATA SERVICES",
 	"CONTEXTS",
 	"SERVICES",
+	"DB",
 	"UTILS",
 	"NAVIGATION",
 	"OTHERS",
@@ -151,6 +154,8 @@ export const importCategoriesWithVariations = [
 	"SERVICE",
 	"SERVICES",
 	"SERVCES",
+	"DB",
+	"DB's",
 	"UTILS",
 	"UTILS",
 	"UTIL",

@@ -15,7 +15,8 @@ Importo is a VS Code extension designed to simplify and declutter your coding wo
 
 1. **Install the Extension:** Download and install Importo from the VS Code Marketplace.
 2. **Command Execution:** Simply run the command `importo` in your VS Code command palette.
-3. **Enjoy Organized Imports:** Watch as your imports are automatically categorized and structured.
+3. **Shortcut Key:** Use the `Alt + S` shortcut for quick activation.
+4. **Enjoy Organized Imports:** Watch as your imports are automatically categorized and structured.
 
 ## Feedback and Support
 
