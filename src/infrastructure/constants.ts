@@ -1,5 +1,7 @@
 export const importCategoryMap: { [key: string]: string } = {
 	express: "MODULES",
+	".css": "STYLES",
+	".scss": "STYLES",
 	module: "MODULES",
 	model: "MODELS",
 	ionic: "MODULES",
@@ -29,8 +31,6 @@ export const importCategoryMap: { [key: string]: string } = {
 	"components/": "COMPONENTS",
 	Component: "COMPONENTS",
 	"contexts/": "CONTEXTS",
-	".css": "STYLES",
-	".scss": "STYLES",
 	"types/": "TYPES",
 	".d": "TYPES",
 	"enums/": "ENUMS",
