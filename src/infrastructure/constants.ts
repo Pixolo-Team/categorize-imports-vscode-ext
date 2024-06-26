@@ -7,6 +7,7 @@ export const importCategoryMap: { [key: string]: string } = {
 	ionic: "MODULES",
 	angular: "MODULES",
 	useRouter: "REACT",
+	usePathname: "REACT",
 	"types/": "TYPES",
 	".d": "TYPES",
 	router: "MODULES",
