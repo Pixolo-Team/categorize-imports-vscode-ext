@@ -1,4 +1,4 @@
-# Importo - Pixolo's Import Organizer for VS Code
+# Importo - Import Organizer for VS Code
 
 ## Overview
 
